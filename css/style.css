@@ -39,3 +39,9 @@ body {
   width: 150px;
   font-weight: 600;
 }
+@media (max-width: 480px) {
+  #time {
+    font-size: 80px;
+    margin: 155px 0;
+  }
+}

@@ -1,16 +1,12 @@
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////
-
+let playAudio = () => {
+  let audio = new Audio("../assets/sounds/clock.wav");
+  audio.play();
+};
+let start = document.querySelector("#start");
+let shortBreak = document.querySelector("#shortBreak");
+let longBreak = document.querySelector("#longBreak");
+let body = document.querySelector("body");
+let count = 0;
 let pomodoro = {
   started: false,
   minutes: 0,
@@ -25,10 +21,6 @@ let pomodoro = {
     this.interval = setInterval(function () {
       self.intervalCallback.apply(self);
     }, 1000);
-    let start = document.querySelector("#start");
-    let shortBreak = document.querySelector("#shortBreak");
-    let longBreak = document.querySelector("#longBreak");
-    let body = document.querySelector("body");
 
     start.onclick = function () {
       self.startStart.apply(self);
@@ -42,14 +34,15 @@ let pomodoro = {
       start.classList.remove("border");
       shortBreak.classList.add("border");
       longBreak.classList.remove("border");
-      body.style.backgroundColor = "#7B734C";
+      body.style.backgroundColor = "#b34540";
+      count++;
     };
     longBreak.onclick = function () {
       self.startLongBreak.apply(self);
       start.classList.remove("border");
       shortBreak.classList.remove("border");
       longBreak.classList.add("border");
-      body.style.backgroundColor = "#7B734C";
+      body.style.backgroundColor = "#4B7A4B";
     };
 
     document.querySelector("#stop").onclick = function () {
@@ -64,6 +57,10 @@ let pomodoro = {
     this.minutes = mins;
     this.seconds = secs;
     this.started = started;
+  },
+  playAudio: function () {
+    let audio = new Audio("../assets/sounds/clock.wav");
+    audio.play();
   },
   startStart: function () {
     this.resetVariables(25, 0, true);
@@ -87,13 +84,31 @@ let pomodoro = {
   updateDom: function () {
     this.minutesDom.innerHTML = this.toDoubleDigit(this.minutes);
     this.secondsDom.innerHTML = this.toDoubleDigit(this.seconds);
-    this.fillerHeight = this.fillerHeight + this.fillerIncrement;
   },
   intervalCallback: function () {
     if (!this.started) return false;
     if (this.seconds == 0) {
       if (this.minutes == 0) {
         this.timerComplete();
+        if (
+          body.style.backgroundColor == "rgb(75, 90, 126)" &&
+          (count < 4 || ((count % 4) != 0))
+        ) {
+          this.playAudio();
+          shortBreak.click();
+        } else if (body.style.backgroundColor == "rgb(75, 90, 126)" && count % 4 == 0) {
+          this.playAudio();
+          longBreak.click();
+        } else if (body.style.backgroundColor == "rgb(179, 69, 64)") {
+          this.playAudio();
+          start.click();
+        } else if (body.style.backgroundColor == "rgb(75, 122, 75)") {
+          this.playAudio();
+          start.click();
+        } else {
+          alert("ERROR");
+          console.error("ERROR");
+        }
         return;
       }
       this.seconds = 59;
@@ -105,7 +120,6 @@ let pomodoro = {
   },
   timerComplete: function () {
     this.started = false;
-    this.fillerHeight = 0;
   },
 };
 window.onload = function () {
