@@ -57,7 +57,7 @@ let pomodoro = {
     this.started = started;
   },
   playAudio: function () {
-    let audio = new Audio("../assets/sounds/clock.wav");
+    let audio = new Audio("https://raw.githubusercontent.com/ali5723/pomodoro-web/main/assets/sounds/clock.wav");
     audio.play();
   },
   startStart: function () {
