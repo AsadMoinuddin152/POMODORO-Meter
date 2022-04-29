@@ -1,5 +1,5 @@
 let playAudio = () => {
-  let audio = new Audio("../assets/sounds/clock.wav");
+  let audio = new Audio("https://raw.githubusercontent.com/ali5723/pomodoro-web/main/assets/sounds/clock.wav");
   audio.play();
 };
 let start = document.querySelector("#start");
@@ -56,10 +56,6 @@ let pomodoro = {
     this.seconds = secs;
     this.started = started;
   },
-  playAudio: function () {
-    let audio = new Audio("../assets/sounds/clock.wav");
-    audio.play();
-  },
   startStart: function () {
     this.resetVariables(25, 0, true);
   },
@@ -92,19 +88,19 @@ let pomodoro = {
           body.style.backgroundColor == "rgb(75, 90, 126)" &&
           (count < 4 || count % 4 != 0)
         ) {
-          this.playAudio();
+          playAudio();
           shortBreak.click();
         } else if (
           body.style.backgroundColor == "rgb(75, 90, 126)" &&
           count % 4 == 0
         ) {
-          this.playAudio();
+          playAudio();
           longBreak.click();
         } else if (body.style.backgroundColor == "rgb(179, 69, 64)") {
-          this.playAudio();
+          playAudio();
           start.click();
         } else if (body.style.backgroundColor == "rgb(75, 122, 75)") {
-          this.playAudio();
+          playAudio();
           start.click();
         } else {
           alert("ERROR");
