@@ -60,7 +60,7 @@ let pomodoro = {
     this.resetVariables(25, 0, true);
   },
   startShortBreak: function () {
-    this.resetVariables(5, 0, true);
+    this.resetVariables(0, 2, true);
   },
   startLongBreak: function () {
     this.resetVariables(15, 0, true);
