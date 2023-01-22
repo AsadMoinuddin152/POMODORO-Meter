@@ -1,7 +1,3 @@
-let playAudio = () => {
-  let audio = new Audio("https://raw.githubusercontent.com/ali5723/pomodoro-web/main/assets/sounds/clock.wav");
-  audio.play();
-};
 let start = document.querySelector("#start");
 let shortBreak = document.querySelector("#shortBreak");
 let longBreak = document.querySelector("#longBreak");
@@ -26,14 +22,14 @@ let pomodoro = {
       start.classList.add("border");
       shortBreak.classList.remove("border");
       longBreak.classList.remove("border");
-      body.style.backgroundColor = "#4B5A7E";
+      body.style.backgroundColor = "#FFFF33";
     };
     shortBreak.onclick = function () {
       self.startShortBreak.apply(self);
       start.classList.remove("border");
       shortBreak.classList.add("border");
       longBreak.classList.remove("border");
-      body.style.backgroundColor = "#b34540";
+      body.style.backgroundColor = "#3399FF";
       count++;
     };
     longBreak.onclick = function () {
@@ -41,14 +37,14 @@ let pomodoro = {
       start.classList.remove("border");
       shortBreak.classList.remove("border");
       longBreak.classList.add("border");
-      body.style.backgroundColor = "#4B7A4B";
+      body.style.backgroundColor = "#00FFFF";
     };
     document.querySelector("#stop").onclick = function () {
       self.stopTimer.apply(self);
       start.classList.remove("border");
       shortBreak.classList.remove("border");
       longBreak.classList.remove("border");
-      body.style.backgroundColor = "#4B5A7E";
+      body.style.backgroundColor = "#FF66B2";
     };
   },
   resetVariables: function (mins, secs, started) {
